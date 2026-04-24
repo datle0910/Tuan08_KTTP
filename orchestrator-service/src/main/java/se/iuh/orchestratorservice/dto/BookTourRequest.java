@@ -9,6 +9,5 @@ import lombok.*;
 public class BookTourRequest {
     private Long userId;
     private Long tourId;
-
     // getter/setter
 }

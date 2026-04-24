@@ -17,6 +17,4 @@ public class BookTourResponse {
         this.message = message;
         this.bookingId = bookingId;
     }
-
-    // getter/setter
 }

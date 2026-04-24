@@ -1,19 +1,23 @@
-// components/TourList.jsx
-const tours = [
-  { id: 1, name: "Da Lat", price: 100 },
-  { id: 2, name: "Phu Quoc", price: 200 },
-];
+import { useEffect, useState } from "react";
+import { getTours } from "../services/api";
 
 export default function TourList({ onSelect }) {
+  const [tours, setTours] = useState([]);
+
+  useEffect(() => {
+    getTours()
+      .then(res => setTours(res.data))
+      .catch(() => alert("Cannot load tours"));
+  }, []);
+
   return (
     <div>
       <h2>Tour List</h2>
-      {tours.map((tour) => (
-        <div key={tour.id}>
-          <p>
-            {tour.name} - ${tour.price}
-          </p>
-          <button onClick={() => onSelect(tour)}>Book</button>
+
+      {tours.map(t => (
+        <div key={t.id}>
+          <p>{t.name} - ${t.price}</p>
+          <button onClick={() => onSelect(t)}>Book</button>
         </div>
       ))}
     </div>
